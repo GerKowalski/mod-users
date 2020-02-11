@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	<changeSet author="Oleksandr Dekin" id="1">
+		<createTable tableName="users">
+			<column name="id" type="VARCHAR(255)">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="jsonb" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="creationDate" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="createdBy" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="patronGroup" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<insert tableName="users">
+			<column name="id" value="e546d50a-926a-421f-8400-a041a2e9db79"/>
+			<column name="jsonb" value="{name:test}"/>
+			<column name="creationDate" value="10.10.2020"/>
+			<column name="createdBy" value="Alex"/>
+			<column name="patronGroup" value="3684a786-6671-4268-8ed0-9db82ebca60b"/>
+		</insert>
+		<insert tableName="users">
+			<column name="id" value="321523-926a-421f-8400-a041a2e9db79"/>
+			<column name="jsonb" value="{name:test2}"/>
+			<column name="creationDate" value="10.10.2010"/>
+			<column name="createdBy" value="Ivan"/>
+			<column name="patronGroup" value="1413212-6671-4268-8ed0-9db82ebca60b"/>
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>
