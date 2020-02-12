@@ -1,0 +1,16 @@
+See
+https://wiki.folio.org/pages/viewpage.action?pageId=14458093&src=contextnavpagetreemode
+https://wiki.folio.org/display/FOLIJET/How+to+automate+redeployment+of+backend+modules+in+Vagrant?src=contextnavpagetreemode
+
+# curl -X DELETE -D - -w '\n' http://localhost:9130/_/proxy/tenants/diku/modules/mod-users-nh-0.0.1-SNAPSHOT
+# curl -X DELETE -D - -w '\n' http://localhost:9130/_/discovery/modules/mod-users-nh-0.0.1-SNAPSHOT
+# curl -X DELETE -D - -w '\n' http://localhost:9130/_/proxy/modules/mod-users-nh-0.0.1-SNAPSHOT
+
+
+sudo docker build -t local/mod-users-poc:0.0.1 ./
+
+curl -X POST -D - -w '\n' -H "Content-type: application/json" -d @./src/main/resources/descriptors/ModuleDescriptor.json http://localhost:9130/_/proxy/modules
+curl -X POST -D - -w '\n' -H "Content-type: application/json" -d @./docker-DeploymentDescriptor.json http://localhost:9130/_/discovery/modules
+curl -X POST -D - -w '\n' -H "Content-type: application/json" -d @./docker-TenantAssignment.json http://localhost:9130/_/proxy/tenants/diku/modules
+
+curl -w '\n' 'http://epuakhaw0025.kyiv.epam.com:9130/users-poc/users' -H 'x-okapi-tenant: diku' --compressed --insecure
