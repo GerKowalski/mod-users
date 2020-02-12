@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/users-poc")
 public class UserAPI
 {
 	@Autowired
@@ -29,7 +30,7 @@ public class UserAPI
 	private UserService userService;
 
 	@ResponseStatus(HttpStatus.OK)
-	@GetMapping(value = "/user/{id}")
+	@GetMapping(value = "/users/{id}")
 	public UserDTO getUserById(@PathVariable final String id)
 	{
 		return userService.getUserById(id);
@@ -46,13 +47,13 @@ public class UserAPI
 				HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/user/{id}")
+	@DeleteMapping(value = "/users/{id}")
 	public void deleteUserById(@PathVariable final String id)
 	{
 		userService.removeById(id);
 	}
 
-	@PostMapping(value = "/user")
+	@PostMapping(value = "/users")
 	public UserDTO updateUser(@RequestBody final User user)
 	{
 		return userService.saveUser(user);
