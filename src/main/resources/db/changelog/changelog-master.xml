@@ -3,5 +3,11 @@
 				   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-	<include file="changes/sprint_1_init.xml" relativeToChangelogFile="true"/>
+
+	<changeSet author="Andrii Gordieiev" id="initial_schema_migration">
+		<sqlFile dbms="postgresql"
+				 path="changes/initial_schema_migration.sql"
+				 relativeToChangelogFile="true"/>
+	</changeSet>
+
 </databaseChangeLog>
