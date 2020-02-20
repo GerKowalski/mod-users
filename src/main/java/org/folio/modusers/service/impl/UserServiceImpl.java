@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.folio.modusers.convertors.impl.UserConverter;
 import org.folio.modusers.entity.User;
-import org.folio.modusers.dto.UserDTO;
+import org.folio.modusers.dto.UserDtoOld;
 import org.folio.modusers.repository.UserRepository;
 import org.folio.modusers.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService
 	private UserConverter userConverter;
 
 	@Override
-	public UserDTO getUserById(String id)
+	public UserDtoOld getUserById(String id)
 	{
 		Optional<User> user = userRepository.findById(id);
 
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public List<UserDTO> getUsers()
+	public List<UserDtoOld> getUsers()
 	{
 		List<User> users = userRepository.findAll();
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public UserDTO saveUser(final User user)
+	public UserDtoOld saveUser(final User user)
 	{
 		return userConverter.convert(userRepository.save(user));
 	}
