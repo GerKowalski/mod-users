@@ -2,12 +2,13 @@ package org.folio.modusers.dto;
 
 import java.io.Serializable;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 
-@Accessors(chain = true)
 @Data
+@Builder
 public class UserDTO implements Serializable
 {
 	private String jsonb;

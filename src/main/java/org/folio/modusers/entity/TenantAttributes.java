@@ -31,11 +31,11 @@ public class TenantAttributes
 	@JsonProperty("parameters")
 	@JsonPropertyDescription("List of key/value parameters of an error")
 	@Valid
-	private List<Parameter> parameters = new ArrayList();
+	private List<Parameter> parameters = new ArrayList<>();
 
 	@JsonIgnore
 	@Valid
-	private Map<String, Object> additionalProperties = new HashMap();
+	private Map<String, Object> additionalProperties = new HashMap<>();
 
 	public TenantAttributes()
 	{

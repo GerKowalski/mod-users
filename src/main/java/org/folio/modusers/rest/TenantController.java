@@ -16,26 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/_/tenant")
-public class TenantAPI
+@Produces({"text/plain"})
+@Consumes("text/plain")
+public class TenantController
 {
 	@Produces({"application/json", "text/plain"})
-	@Consumes({"application/json"})
 	@PostMapping
 	public ResponseEntity postTenant(TenantAttributes ta, @RequestHeader Map<String, String> headers)
 	{
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
 
-	@Produces({"text/plain"})
-	@Consumes("text/plain")
 	@GetMapping
 	public ResponseEntity getTenant(@RequestHeader Map<String, String> headers)
 	{
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
-	@Produces({"text/plain"})
-	@Consumes("text/plain")
 	@DeleteMapping
 	public ResponseEntity deleteTenant(@RequestHeader Map<String, String> headers)
 	{
