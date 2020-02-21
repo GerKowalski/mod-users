@@ -3,7 +3,7 @@ package org.folio.modusers.rest;
 import java.util.List;
 
 import org.folio.modusers.entity.User;
-import org.folio.modusers.dto.UserDTO;
+import org.folio.modusers.dto.UserDtoOld;
 import org.folio.modusers.repository.UserRepository;
 import org.folio.modusers.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +31,15 @@ public class UserAPI
 
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/users/{id}")
-	public UserDTO getUserById(@PathVariable final String id)
+	public UserDtoOld getUserById(@PathVariable final String id)
 	{
 		return userService.getUserById(id);
 	}
 
 	@GetMapping("/users")
-	public ResponseEntity<List<UserDTO>> getUsers()
+	public ResponseEntity<List<UserDtoOld>> getUsers()
 	{
-		List<UserDTO> users = userService.getUsers();
+		List<UserDtoOld> users = userService.getUsers();
 
 		return new ResponseEntity<>(
 				users,
@@ -54,7 +54,7 @@ public class UserAPI
 	}
 
 	@PostMapping(value = "/users")
-	public UserDTO updateUser(@RequestBody final User user)
+	public UserDtoOld updateUser(@RequestBody final User user)
 	{
 		return userService.saveUser(user);
 	}

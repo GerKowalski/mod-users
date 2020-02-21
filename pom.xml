@@ -16,6 +16,14 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<version.swagger.codegen>2.4.12</version.swagger.codegen>
+		<blUsers.yaml.file>${project.basedir}/src/main/resources/swagger.api/blUsersApi.yaml</blUsers.yaml.file>
+		<users.yaml.file>${project.basedir}/src/main/resources/swagger.api/usersApi.yaml</users.yaml.file>
+		<proxiesFor.yaml.file>${project.basedir}/src/main/resources/swagger.api/proxiesForApi.yaml</proxiesFor.yaml.file>
+		<groups.yaml.file>${project.basedir}/src/main/resources/swagger.api/groupsApi.yaml</groups.yaml.file>
+		<addressTypes.yaml.file>${project.basedir}/src/main/resources/swagger.api/addressTypes.yaml</addressTypes.yaml.file>
+		<generated-sources-path>${project.build.directory}/generated-sources</generated-sources-path>
+		<generated-sources-java-path>main/java</generated-sources-java-path>
 	</properties>
 
 	<dependencies>
@@ -61,8 +69,18 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
 
@@ -91,6 +109,197 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-codegen-maven-plugin</artifactId>
+				<version>${version.swagger.codegen}</version>
+				<executions>
+					<execution>
+						<id>generate-swagger-blusers-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${blUsers.yaml.file}</inputSpec>
+							<output>${project.build.directory}/generated-sources</output>
+							<language>spring</language>
+							<modelPackage>${project.groupId}.modusers.dto</modelPackage>
+							<apiPackage>${project.groupId}.modusers.blusers.api</apiPackage>
+							<invokerPackage>${project.groupId}.modusers.invoker</invokerPackage>
+                            <modelNameSuffix>Dto</modelNameSuffix>
+                            <generateApis>true</generateApis>
+                            <generateApiTests>true</generateApiTests>
+                            <generateApiDocumentation>true</generateApiDocumentation>
+                            <generateModels>true</generateModels>
+                            <generateModelTests>false</generateModelTests>
+                            <generateModelDocumentation>true</generateModelDocumentation>
+                            <configOptions>
+								<groupId>org.folio</groupId>
+								<artifactId>mod-bl-users-api</artifactId>
+								<name>mod-bl-users-api</name>
+								<artifactVersion>${project.version}</artifactVersion>
+                                <java8>false</java8>
+                                <configPackage>${project.groupId}.modusers.blusers.config</configPackage>
+								<title>org-folio-bl-users-api</title>
+                                <dateLibrary>java8</dateLibrary>
+                                <interfaceOnly>true</interfaceOnly>
+								<sourceFolder>src/main/java</sourceFolder>
+                            </configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-swagger-users-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${users.yaml.file}</inputSpec>
+							<output>${project.build.directory}/generated-sources</output>
+							<language>spring</language>
+							<modelPackage>${project.groupId}.modusers.dto</modelPackage>
+							<apiPackage>${project.groupId}.modusers.users.api</apiPackage>
+							<modelNameSuffix>Dto</modelNameSuffix>
+							<generateApis>true</generateApis>
+							<generateApiTests>true</generateApiTests>
+							<generateApiDocumentation>true</generateApiDocumentation>
+							<generateModels>true</generateModels>
+							<generateModelTests>false</generateModelTests>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<configOptions>
+								<groupId>org.folio</groupId>
+								<artifactId>mod-users-api</artifactId>
+								<name>mod-users-api</name>
+								<artifactVersion>${project.version}</artifactVersion>
+								<java8>false</java8>
+								<configPackage>${project.groupId}.modusers.users.config</configPackage>
+								<title>org-folio-users-api</title>
+								<dateLibrary>java8</dateLibrary>
+								<interfaceOnly>true</interfaceOnly>
+								<sourceFolder>src/main/java</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-swagger-proxiesfor-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${proxiesFor.yaml.file}</inputSpec>
+							<output>${project.build.directory}/generated-sources</output>
+							<language>spring</language>
+							<modelPackage>${project.groupId}.modusers.dto</modelPackage>
+							<apiPackage>${project.groupId}.modusers.proxiesfor.api</apiPackage>
+							<modelNameSuffix>Dto</modelNameSuffix>
+							<generateApis>true</generateApis>
+							<generateApiTests>true</generateApiTests>
+							<generateApiDocumentation>true</generateApiDocumentation>
+							<generateModels>true</generateModels>
+							<generateModelTests>false</generateModelTests>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<configOptions>
+								<groupId>org.folio</groupId>
+								<artifactId>mod-users-api</artifactId>
+								<name>mod-users-api</name>
+								<artifactVersion>${project.version}</artifactVersion>
+								<java8>false</java8>
+								<configPackage>${project.groupId}.modusers.proxiesfor.config</configPackage>
+								<title>org-folio-proxiesfor-api</title>
+								<dateLibrary>java8</dateLibrary>
+								<interfaceOnly>true</interfaceOnly>
+								<sourceFolder>src/main/java</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-swagger-groups-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${groups.yaml.file}</inputSpec>
+							<output>${project.build.directory}/generated-sources</output>
+							<language>spring</language>
+							<modelPackage>${project.groupId}.modusers.dto</modelPackage>
+							<apiPackage>${project.groupId}.modusers.groups.api</apiPackage>
+							<modelNameSuffix>Dto</modelNameSuffix>
+							<generateApis>true</generateApis>
+							<generateApiTests>true</generateApiTests>
+							<generateApiDocumentation>true</generateApiDocumentation>
+							<generateModels>true</generateModels>
+							<generateModelTests>false</generateModelTests>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<configOptions>
+								<groupId>org.folio</groupId>
+								<artifactId>mod-users-api</artifactId>
+								<name>mod-users-api</name>
+								<artifactVersion>${project.version}</artifactVersion>
+								<java8>false</java8>
+								<configPackage>${project.groupId}.modusers.groups.config</configPackage>
+								<title>org-folio-groups-api</title>
+								<dateLibrary>java8</dateLibrary>
+								<interfaceOnly>true</interfaceOnly>
+								<sourceFolder>src/main/java</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-swagger-address-types-api</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${addressTypes.yaml.file}</inputSpec>
+							<output>${project.build.directory}/generated-sources</output>
+							<language>spring</language>
+							<modelPackage>${project.groupId}.modusers.dto</modelPackage>
+							<apiPackage>${project.groupId}.modusers.addresstypes.api</apiPackage>
+							<modelNameSuffix>Dto</modelNameSuffix>
+							<generateApis>true</generateApis>
+							<generateApiTests>true</generateApiTests>
+							<generateApiDocumentation>true</generateApiDocumentation>
+							<generateModels>true</generateModels>
+							<generateModelTests>false</generateModelTests>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<configOptions>
+								<groupId>org.folio</groupId>
+								<artifactId>mod-users-api</artifactId>
+								<name>mod-users-api</name>
+								<artifactVersion>${project.version}</artifactVersion>
+								<java8>false</java8>
+								<configPackage>${project.groupId}.modusers.addresstypes.config</configPackage>
+								<title>org-folio-address-types-api</title>
+								<dateLibrary>java8</dateLibrary>
+								<interfaceOnly>true</interfaceOnly>
+								<sourceFolder>src/main/java</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
