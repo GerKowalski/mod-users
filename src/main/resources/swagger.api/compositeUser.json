@@ -15,6 +15,11 @@
       "credentials": {
         "$ref": "credentials.json#/credentials"
       },
+      "credentials": {
+        "type": "object",
+        "description": "Credentials object",
+        "$ref": "credentials.json#/credentials"
+      },
       "proxiesFor": {
         "type": "array",
         "description": "Proxies for, array",

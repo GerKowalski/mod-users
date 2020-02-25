@@ -152,6 +152,19 @@
         "type": "string",
         "format": "date-time",
         "description": "Updated date"
+      },
+      "metadata": {
+        "$ref": "metadata.json#/metadata",
+        "readonly": true
+      },
+      "tags": {
+        "type": "object",
+        "$ref": "tags.json#/tags"
+      },
+      "customFields" : {
+        "description": "Object that contains custom field",
+        "type": "object",
+        "additionalProperties": true
       }
     },
     "additionalProperties": false,

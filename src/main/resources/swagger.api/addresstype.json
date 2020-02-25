@@ -15,6 +15,10 @@
       "id": {
         "description": "A UUID identifying this address type",
         "type": "string"
+      },
+      "metadata": {
+        "$ref": "metadata.json#/metadata",
+        "readonly": true
       }
     },
     "additionalProperties": false,
