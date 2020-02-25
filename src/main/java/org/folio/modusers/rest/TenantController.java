@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/_/tenant")
-public class TenantAPI
+public class TenantController
 {
 	@Produces({"application/json", "text/plain"})
 	@Consumes({"application/json"})
