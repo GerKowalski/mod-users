@@ -20,7 +20,7 @@
           "properties": {
             "facetValues": {
               "type": "array",
-              "descrription": "Array of facet values",
+              "description": "Array of facet values",
               "items": {
                 "type": "object",
                 "description": "A facet value",

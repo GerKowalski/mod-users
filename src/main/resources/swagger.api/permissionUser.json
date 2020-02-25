@@ -17,6 +17,10 @@
         "items": {
           "type": "object"
         }
+      },
+      "metadata": {
+        "$ref": "metadata.json#/metadata",
+        "readonly": true
       }
     },
     "additionalProperties": false
