@@ -151,10 +151,10 @@
 								<artifactId>mod-bl-users-api</artifactId>
 								<name>mod-bl-users-api</name>
 								<artifactVersion>${project.version}</artifactVersion>
-                                <java8>false</java8>
+                                <java8>true</java8>
                                 <configPackage>${project.groupId}.modusers.blusers.config</configPackage>
 								<title>org-folio-bl-users-api</title>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>legacy</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
 								<sourceFolder>src/main/java</sourceFolder>
                             </configOptions>
@@ -184,10 +184,10 @@
 								<artifactId>mod-users-api</artifactId>
 								<name>mod-users-api</name>
 								<artifactVersion>${project.version}</artifactVersion>
-								<java8>false</java8>
+								<java8>true</java8>
 								<configPackage>${project.groupId}.modusers.users.config</configPackage>
 								<title>org-folio-users-api</title>
-								<dateLibrary>java8</dateLibrary>
+								<dateLibrary>legacy</dateLibrary>
 								<interfaceOnly>true</interfaceOnly>
 								<sourceFolder>src/main/java</sourceFolder>
 							</configOptions>
@@ -217,10 +217,10 @@
 								<artifactId>mod-users-api</artifactId>
 								<name>mod-users-api</name>
 								<artifactVersion>${project.version}</artifactVersion>
-								<java8>false</java8>
+								<java8>true</java8>
 								<configPackage>${project.groupId}.modusers.proxiesfor.config</configPackage>
 								<title>org-folio-proxiesfor-api</title>
-								<dateLibrary>java8</dateLibrary>
+								<dateLibrary>legacy</dateLibrary>
 								<interfaceOnly>true</interfaceOnly>
 								<sourceFolder>src/main/java</sourceFolder>
 							</configOptions>
@@ -250,10 +250,10 @@
 								<artifactId>mod-users-api</artifactId>
 								<name>mod-users-api</name>
 								<artifactVersion>${project.version}</artifactVersion>
-								<java8>false</java8>
+								<java8>true</java8>
 								<configPackage>${project.groupId}.modusers.groups.config</configPackage>
 								<title>org-folio-groups-api</title>
-								<dateLibrary>java8</dateLibrary>
+								<dateLibrary>legacy</dateLibrary>
 								<interfaceOnly>true</interfaceOnly>
 								<sourceFolder>src/main/java</sourceFolder>
 							</configOptions>
@@ -283,10 +283,10 @@
 								<artifactId>mod-users-api</artifactId>
 								<name>mod-users-api</name>
 								<artifactVersion>${project.version}</artifactVersion>
-								<java8>false</java8>
+								<java8>true</java8>
 								<configPackage>${project.groupId}.modusers.addresstypes.config</configPackage>
 								<title>org-folio-address-types-api</title>
-								<dateLibrary>java8</dateLibrary>
+								<dateLibrary>legacy</dateLibrary>
 								<interfaceOnly>true</interfaceOnly>
 								<sourceFolder>src/main/java</sourceFolder>
 							</configOptions>
