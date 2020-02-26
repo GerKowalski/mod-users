@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Builder
-public class UserDTO implements Serializable
+public class UserDtoOld implements Serializable
 {
 	private String jsonb;
 

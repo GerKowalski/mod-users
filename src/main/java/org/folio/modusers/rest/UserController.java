@@ -1,8 +1,11 @@
 package org.folio.modusers.rest;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import java.util.List;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.folio.modusers.dto.UserDTO;
+import lombok.Setter;
+import org.folio.modusers.dto.UserDtoOld;
 import org.folio.modusers.entity.User;
 import org.folio.modusers.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +28,12 @@ public class UserController {
 
   @ResponseStatus(HttpStatus.OK)
   @GetMapping(value = "{id}")
-  public UserDTO getUserById(@PathVariable final String id) {
+  public UserDtoOld getUserById(@PathVariable final String id) {
     return userService.getUserById(id);
   }
 
   @GetMapping
-  public List<UserDTO> getUsers() {
+  public List<UserDtoOld> getUsers() {
     return userService.getUsers();
   }
 
@@ -40,7 +43,7 @@ public class UserController {
   }
 
   @PostMapping
-  public UserDTO saveOrUpdateUser(@RequestBody final User user) {
+  public UserDtoOld saveOrUpdateUser(@RequestBody final User user) {
     return userService.saveUser(user);
   }
 
