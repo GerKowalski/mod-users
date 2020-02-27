@@ -1,24 +1,91 @@
 package org.folio.modusers.entity;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.Date;
+import java.util.UUID;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Entity(name = "users")
+@Table(value = "users")
 @Data
-public class User implements Serializable
+public class User implements Persistable<UUID>, Serializable
 {
 	@Id
-	private String id;
+	@Column("id")
+	private UUID id;
 
-	private String jsonb;
+	@Column("username")
+	private String username;
+	
+	@Column("external_system_id")
+	private UUID externalSystemId;
 
-	private String creationDate;
+	@Column("barcode")
+	private String barcode;
 
-	private String createdBy;
+	@Column("active")
+	private Boolean active;
 
-	private String patronGroup;
+	@Column("type")
+	private String type;
+
+	@Column("patron_group_id")
+	private UUID patronGroupId;
+
+	//TODO Discussion with team
+//	private Object meta;
+
+/*	@Column("proxyFor")
+	private List<String> proxyFor;*/
+
+/*	@Column("personal")
+	private UserPersonal personal;*/
+
+	@Column("enrollment_date")
+	private Date enrollmentDate;
+
+	@Column("expiration_date")
+	private Date expirationDate;
+
+	@Column("created_date")
+	private Date createdDate;
+
+	@Column("updated_date")
+	private Date updatedDate;
+
+	@Column("lastname")
+	private String lastName;
+
+	@Column("firstname")
+	private String firstName;
+
+	@Column("middlename")
+	private String middleName;
+
+	@Column("email")
+	private String email;
+
+	@Column("phone")
+	private String phone;
+
+	@Column("modile_phone")
+	private String mobilePhone;
+
+	@Column("date_of_birth")
+	private Date dateOfBirth;
+
+	@Override
+	public UUID getId() {
+		return id;
+	}
+
+	@Override
+	public boolean isNew() {
+		return id == null;
+	}
 
 }

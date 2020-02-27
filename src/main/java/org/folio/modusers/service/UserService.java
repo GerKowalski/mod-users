@@ -2,17 +2,46 @@ package org.folio.modusers.service;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+import lombok.RequiredArgsConstructor;
+import org.folio.modusers.convertors.impl.UserConverter;
+import org.folio.modusers.dto.UserDto;
+import org.folio.modusers.dto.UserdataCollectionDto;
 import org.folio.modusers.entity.User;
-import org.folio.modusers.dto.UserDtoOld;
+import org.folio.modusers.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
-public interface UserService
+@Service
+@RequiredArgsConstructor
+public class UserService
 {
-	UserDtoOld getUserById(String id);
+	private final UserRepository userRepository;
 
-	List<UserDtoOld> getUsers();
+	private final UserConverter userConverter;
 
-	void removeById(String id);
+	public UserDto getUserById(String id)
+	{
+		return userRepository.findById(id)
+					  .map(userConverter::convert)
+					  .orElseThrow(() -> new IllegalArgumentException("User not found"));
+	}
 
-	UserDtoOld saveUser(User user);
+	public UserdataCollectionDto getUsers()
+	{
+		return userConverter.convertToCollection(userRepository.findAll());
+	}
+
+	public void removeById(final String id)
+	{
+		userRepository.deleteById(id);
+	}
+
+	public UserDto saveUser(final UserDto userDto)
+	{
+		User user = userConverter.convertToEntity(userDto);
+
+		return userConverter.convert(userRepository.save(user));
+	}
+
 
 }
