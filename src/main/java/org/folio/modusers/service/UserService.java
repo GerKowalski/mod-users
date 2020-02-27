@@ -28,9 +28,7 @@ public class UserService
 
 	public UserdataCollectionDto getUsers()
 	{
-		List<User> users = Lists.newArrayList(userRepository.findAll());
-
-		return userConverter.convertToCollection(users);
+		return userConverter.convertToCollection(userRepository.findAll());
 	}
 
 	public void removeById(final String id)

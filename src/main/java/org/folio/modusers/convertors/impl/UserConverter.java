@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.folio.modusers.dto.UserDto;
 import org.folio.modusers.dto.UserPersonalDto;
@@ -76,15 +77,16 @@ public class UserConverter implements Converter<User, UserDto>
 		return user;
 	}
 
-	public UserdataCollectionDto convertToCollection(final List<User> users)
+	public UserdataCollectionDto convertToCollection(final Iterable<User> users)
 	{
 		UserdataCollectionDto userdataCollectionDto = new UserdataCollectionDto();
 
-		List<UserDto> usersDto = users.stream()
-									 .map(this::convert)
-									 .collect(Collectors.toList());
+		List<UserDto> usersDto = StreamSupport.stream(users.spliterator(), false)
+											  .map(this::convert)
+											  .collect(Collectors.toList());
 
 		userdataCollectionDto.setUsers(usersDto);
+		userdataCollectionDto.setTotalRecords(usersDto.size());
 
 		return userdataCollectionDto;
 
