@@ -89,6 +89,5 @@ public class UserConverter implements Converter<User, UserDto>
 		userdataCollectionDto.setTotalRecords(usersDto.size());
 
 		return userdataCollectionDto;
-
 	}
 }
