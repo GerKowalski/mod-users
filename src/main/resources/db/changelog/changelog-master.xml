@@ -4,7 +4,7 @@
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-	<changeSet author="Andrii Gordieiev" id="initial_schema_migration">
+	<changeSet author="Olekasndr Dekin" id="initial_schema_migration">
 		<sqlFile dbms="postgresql"
 				 path="changes/initial_schema_migration.sql"
 				 relativeToChangelogFile="true"/>

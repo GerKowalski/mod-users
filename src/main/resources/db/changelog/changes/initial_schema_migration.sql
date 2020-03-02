@@ -1,5 +1,6 @@
-DROP EXTENSION pgcrypto;
-CREATE EXTENSION pgcrypto;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA diku_mod_users_poc TO folio_admin;
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 CREATE TABLE address_type(
    id UUID PRIMARY KEY,
@@ -64,7 +65,7 @@ CREATE TABLE address(
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL,
   address_type_id UUID NOT NULL,
-  country_id VARCHAR (10) NOT NULL,
+  country_id VARCHAR (10),
   address_line1 VARCHAR (100) NOT NULL,
   address_line2 VARCHAR (100) NOT NULL,
   city VARCHAR (100) NOT NULL,

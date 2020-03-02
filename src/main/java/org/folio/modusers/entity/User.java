@@ -2,38 +2,47 @@ package org.folio.modusers.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.domain.Persistable;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Table(value = "users")
+import lombok.Data;
+
+@Table(name = "users")
 @Data
-public class User implements Persistable<UUID>, Serializable
+@Entity
+public class User implements Serializable
 {
+
 	@Id
-	@Column("id")
+	@Column(name = "id")
+	@GeneratedValue
 	private UUID id;
 
-	@Column("username")
+	@Column(name = "username")
 	private String username;
-	
-	@Column("external_system_id")
+
+	@Column(name = "external_system_id")
 	private UUID externalSystemId;
 
-	@Column("barcode")
+	@Column(name = "barcode")
 	private String barcode;
 
-	@Column("active")
+	@Column(name = "active")
 	private Boolean active;
 
-	@Column("type")
+	@Column(name = "type")
 	private String type;
 
-	@Column("patron_group_id")
+	@Column(name = "patron_group_id")
 	private UUID patronGroupId;
 
 	//TODO Discussion with team
@@ -45,47 +54,41 @@ public class User implements Persistable<UUID>, Serializable
 /*	@Column("personal")
 	private UserPersonal personal;*/
 
-	@Column("enrollment_date")
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL)
+	private List<Address> addresses;
+
+	@Column(name = "enrollment_date")
 	private Date enrollmentDate;
 
-	@Column("expiration_date")
+	@Column(name = "expiration_date")
 	private Date expirationDate;
 
-	@Column("created_date")
+	@Column(name = "created_date")
 	private Date createdDate;
 
-	@Column("updated_date")
+	@Column(name = "updated_date")
 	private Date updatedDate;
 
-	@Column("lastname")
+	@Column(name = "lastname")
 	private String lastName;
 
-	@Column("firstname")
+	@Column(name = "firstname")
 	private String firstName;
 
-	@Column("middlename")
+	@Column(name = "middlename")
 	private String middleName;
 
-	@Column("email")
+	@Column(name = "email")
 	private String email;
 
-	@Column("phone")
+	@Column(name = "phone")
 	private String phone;
 
-	@Column("modile_phone")
+	@Column(name = "modile_phone")
 	private String mobilePhone;
 
-	@Column("date_of_birth")
+	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
-
-	@Override
-	public UUID getId() {
-		return id;
-	}
-
-	@Override
-	public boolean isNew() {
-		return id == null;
-	}
 
 }

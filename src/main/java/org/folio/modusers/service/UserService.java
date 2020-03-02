@@ -1,8 +1,7 @@
 package org.folio.modusers.service;
 
-import java.util.List;
+import java.util.UUID;
 
-import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import org.folio.modusers.convertors.impl.UserConverter;
 import org.folio.modusers.dto.UserDto;
@@ -21,9 +20,9 @@ public class UserService
 
 	public UserDto getUserById(String id)
 	{
-		return userRepository.findById(id)
-					  .map(userConverter::convert)
-					  .orElseThrow(() -> new IllegalArgumentException("User not found"));
+		return userRepository.findById(UUID.fromString(id))
+							 .map(userConverter::convert)
+							 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 	}
 
 	public UserdataCollectionDto getUsers()
@@ -33,7 +32,7 @@ public class UserService
 
 	public void removeById(final String id)
 	{
-		userRepository.deleteById(id);
+		userRepository.deleteById(UUID.fromString(id));
 	}
 
 	public UserDto saveUser(final UserDto userDto)

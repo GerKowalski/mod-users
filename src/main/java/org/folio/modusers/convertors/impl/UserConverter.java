@@ -68,11 +68,20 @@ public class UserConverter implements Converter<User, UserDto>
 		user.setType(userDto.getType());
 		user.setEnrollmentDate(userDto.getEnrollmentDate());
 		user.setCreatedDate(userDto.getCreatedDate());
-		user.setLastName(userDto.getPersonal().getLastName());
-		user.setFirstName(userDto.getPersonal().getFirstName());
-		user.setEmail(userDto.getPersonal().getEmail());
-		user.setPhone(userDto.getPersonal().getPhone());
-		user.setDateOfBirth(userDto.getPersonal().getDateOfBirth());
+		if (userDto.getPersonal() != null)
+		{
+			user.setLastName(userDto.getPersonal()
+									.getLastName());
+			user.setFirstName(userDto.getPersonal()
+									 .getFirstName());
+			user.setEmail(userDto.getPersonal()
+								 .getEmail());
+			user.setPhone(userDto.getPersonal()
+								 .getPhone());
+			user.setDateOfBirth(userDto.getPersonal()
+									   .getDateOfBirth());
+		}
+
 
 		return user;
 	}
