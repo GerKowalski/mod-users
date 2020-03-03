@@ -4,10 +4,7 @@ import java.util.List;
 import org.folio.modusers.dto.UserDto;
 import org.folio.modusers.dto.UserdataCollectionDto;
 import org.folio.modusers.entity.User;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
@@ -54,5 +51,13 @@ public abstract class UserMapper {
     public List<User> mapUserDataCollectionDtoToEntity(UserdataCollectionDto userdataCollectionDto) {
         return mapDtosToEntities(userdataCollectionDto.getUsers());
     }
+
+    @Mappings({
+            @Mapping(target = "id", expression = "java(user.getId() == null ? null : java.util.UUID.fromString(userDto.getId()))"),
+            @Mapping(target = "externalSystemId", expression = "java(userDto.getId() == null ? null : java.util.UUID"
+                    + ".fromString(userDto.getId()))")
+    })
+    public abstract void mapEntityToDto(UserDto userDto, @MappingTarget User user);
+
 
 }

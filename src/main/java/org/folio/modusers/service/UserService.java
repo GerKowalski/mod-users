@@ -35,5 +35,9 @@ public class UserService {
     return userMapper.mapEntityToDto(userRepository.save(user));
   }
 
-
+    public void updateUser(final UserDto userDto,final String userId ) {
+        User user = userRepository.getOne(UUID.fromString(userId));
+        userMapper.mapEntityToDto(userDto, user);
+        userRepository.save(user);
+    }
 }

@@ -55,8 +55,8 @@ public class UserController implements UsersApi {
   public ResponseEntity<Void> putUsersByUserId(final String userId,
       @Valid final UserDto userdataCollection,
       @Pattern(regexp = "[a-zA-Z]{2}") @Valid final String lang) {
-    userService.saveUser(userdataCollection);
 
+    userService.updateUser(userdataCollection, userId);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }
