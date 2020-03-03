@@ -1,20 +1,14 @@
 package org.folio.modusers.service;
 
-import java.util.Optional;
-import java.util.UUID;
-
 import lombok.RequiredArgsConstructor;
-import org.folio.modusers.convertors.impl.UserConverter;
 import org.folio.modusers.dto.AddresstypeCollectionDto;
 import org.folio.modusers.dto.AddresstypeDto;
-import org.folio.modusers.dto.UserDto;
-import org.folio.modusers.dto.UserdataCollectionDto;
 import org.folio.modusers.entity.AddressType;
-import org.folio.modusers.entity.User;
 import org.folio.modusers.repository.AddressTypeRepository;
-import org.folio.modusers.repository.UserRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

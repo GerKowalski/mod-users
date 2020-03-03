@@ -1,4 +1,4 @@
-package org.folio.modusers.convertors.impl;
+package org.folio.modusers.mapper;
 
 import org.folio.modusers.dto.UserPersonalAddressesDto;
 import org.folio.modusers.entity.Address;

@@ -1,15 +1,18 @@
-package org.folio.modusers.convertors.impl;
+package org.folio.modusers.mapper;
 
 import org.folio.modusers.dto.UserDto;
+import org.folio.modusers.dto.UserdataCollectionDto;
 import org.folio.modusers.entity.User;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
-public interface UserMapper {
+public abstract class UserMapper {
     @Mappings({
             @Mapping(target = "id", expression = "java(String.valueOf(user.getId()))"),
             @Mapping(target = "externalSystemId", expression = "java(String.valueOf(user.getExternalSystemId()))"),
@@ -23,12 +26,31 @@ public interface UserMapper {
             @Mapping(target = "personal.addresses", source="addresses")
 
     })
-    UserDto mapEntityToDto(User user);
+    public abstract UserDto mapEntityToDto(User user);
 
     @Mappings({
             @Mapping(target = "id", expression = "java(java.util.UUID.fromString(userDto.getId()))"),
             @Mapping(target = "externalSystemId", expression = "java(java.util.UUID.fromString(userDto.getId()))"),
     })
     @InheritInverseConfiguration
-    User mapDtoToEntity(UserDto userDto);
+    public abstract User mapDtoToEntity(UserDto userDto);
+
+    @Mappings({})
+    public abstract List<UserDto> mapEntitiesToDtos(List<User> users);
+
+    @InheritInverseConfiguration
+    public abstract List<User> mapDtosToEntities(List<UserDto> users);
+
+    public UserdataCollectionDto mapToUserDataCollectionDto(List<User> users) {
+        UserdataCollectionDto userdataCollectionDto = new UserdataCollectionDto();
+        List<UserDto> userDtoList = mapEntitiesToDtos(users);
+        userdataCollectionDto.setUsers(userDtoList);
+        userdataCollectionDto.setTotalRecords(userDtoList.size());
+        return userdataCollectionDto;
+    }
+
+    public List<User> mapUserDataCollectionDtoToEntity(UserdataCollectionDto userdataCollectionDto) {
+        return mapDtosToEntities(userdataCollectionDto.getUsers());
+    }
+
 }
