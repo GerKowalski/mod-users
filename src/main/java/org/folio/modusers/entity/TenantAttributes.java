@@ -1,12 +1,5 @@
 package org.folio.modusers.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,102 +7,95 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"module_from", "module_to", "parameters"})
-public class TenantAttributes
-{
-	@JsonProperty("module_from")
-	@JsonPropertyDescription("The module ID that is being upgraded or disabled")
-	private String moduleFrom;
+public class TenantAttributes {
 
-	@JsonProperty("module_to")
-	@JsonPropertyDescription("The module ID that is being upgraded or enabled")
-	@NotNull
-	private String moduleTo;
+  @JsonProperty("module_from")
+  @JsonPropertyDescription("The module ID that is being upgraded or disabled")
+  private String moduleFrom;
 
-	@JsonProperty("parameters")
-	@JsonPropertyDescription("List of key/value parameters of an error")
-	@Valid
-	private List<Parameter> parameters = new ArrayList();
+  @JsonProperty("module_to")
+  @JsonPropertyDescription("The module ID that is being upgraded or enabled")
+  @NotNull
+  private String moduleTo;
 
-	@JsonIgnore
-	@Valid
-	private Map<String, Object> additionalProperties = new HashMap();
+  @JsonProperty("parameters")
+  @JsonPropertyDescription("List of key/value parameters of an error")
+  @Valid
+  private List<Parameter> parameters = new ArrayList();
 
-	public TenantAttributes()
-	{
-	}
+  @JsonIgnore
+  @Valid
+  private Map<String, Object> additionalProperties = new HashMap();
 
-	@JsonProperty("module_from")
-	public String getModuleFrom()
-	{
-		return this.moduleFrom;
-	}
+  public TenantAttributes() {
+  }
 
-	@JsonProperty("module_from")
-	public void setModuleFrom(String var1)
-	{
-		this.moduleFrom = var1;
-	}
+  @JsonProperty("module_from")
+  public String getModuleFrom() {
+    return this.moduleFrom;
+  }
 
-	public TenantAttributes withModuleFrom(String var1)
-	{
-		this.moduleFrom = var1;
-		return this;
-	}
+  @JsonProperty("module_from")
+  public void setModuleFrom(String var1) {
+    this.moduleFrom = var1;
+  }
 
-	@JsonProperty("module_to")
-	public String getModuleTo()
-	{
-		return this.moduleTo;
-	}
+  public TenantAttributes withModuleFrom(String var1) {
+    this.moduleFrom = var1;
+    return this;
+  }
 
-	@JsonProperty("module_to")
-	public void setModuleTo(String var1)
-	{
-		this.moduleTo = var1;
-	}
+  @JsonProperty("module_to")
+  public String getModuleTo() {
+    return this.moduleTo;
+  }
 
-	public TenantAttributes withModuleTo(String var1)
-	{
-		this.moduleTo = var1;
-		return this;
-	}
+  @JsonProperty("module_to")
+  public void setModuleTo(String var1) {
+    this.moduleTo = var1;
+  }
 
-	@JsonProperty("parameters")
-	public List<Parameter> getParameters()
-	{
-		return this.parameters;
-	}
+  public TenantAttributes withModuleTo(String var1) {
+    this.moduleTo = var1;
+    return this;
+  }
 
-	@JsonProperty("parameters")
-	public void setParameters(List<Parameter> var1)
-	{
-		this.parameters = var1;
-	}
+  @JsonProperty("parameters")
+  public List<Parameter> getParameters() {
+    return this.parameters;
+  }
 
-	public TenantAttributes withParameters(List<Parameter> var1)
-	{
-		this.parameters = var1;
-		return this;
-	}
+  @JsonProperty("parameters")
+  public void setParameters(List<Parameter> var1) {
+    this.parameters = var1;
+  }
 
-	@JsonAnyGetter
-	public Map<String, Object> getAdditionalProperties()
-	{
-		return this.additionalProperties;
-	}
+  public TenantAttributes withParameters(List<Parameter> var1) {
+    this.parameters = var1;
+    return this;
+  }
 
-	@JsonAnySetter
-	public void setAdditionalProperty(String var1, Object var2)
-	{
-		this.additionalProperties.put(var1, var2);
-	}
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
 
-	public TenantAttributes withAdditionalProperty(String var1, Object var2)
-	{
-		this.additionalProperties.put(var1, var2);
-		return this;
-	}
+  @JsonAnySetter
+  public void setAdditionalProperty(String var1, Object var2) {
+    this.additionalProperties.put(var1, var2);
+  }
+
+  public TenantAttributes withAdditionalProperty(String var1, Object var2) {
+    this.additionalProperties.put(var1, var2);
+    return this;
+  }
 }

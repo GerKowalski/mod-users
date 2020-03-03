@@ -6,24 +6,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.Data;
 
 @Table(name = "address_type")
 @Data
 @Entity
-public class AddressType implements Serializable
-{
+public class AddressType implements Serializable {
 
-	@Id
-	@Column(name = "id")
-	private UUID id;
+  @Id
+  private UUID id;
 
-	@Column(name = "address_type")
-	private String addressType;
+  private String addressType;
 
-	@Column(name = "description")
-	private String description;
+  private String description;
 
 }
 

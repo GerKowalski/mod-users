@@ -1,5 +1,6 @@
 package org.folio.modusers.mapper;
 
+import java.util.List;
 import org.folio.modusers.dto.UserDto;
 import org.folio.modusers.dto.UserdataCollectionDto;
 import org.folio.modusers.entity.User;
@@ -7,8 +8,6 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-
-import java.util.List;
 
 
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
