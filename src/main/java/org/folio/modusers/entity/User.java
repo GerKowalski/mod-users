@@ -23,7 +23,6 @@ public class User implements Serializable
 {
 
 	@Id
-	@Column(name = "id")
 	@GeneratedValue
 	private UUID id;
 

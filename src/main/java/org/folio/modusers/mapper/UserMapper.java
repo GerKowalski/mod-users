@@ -14,8 +14,9 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
 public abstract class UserMapper {
     @Mappings({
-            @Mapping(target = "id", expression = "java(String.valueOf(user.getId()))"),
-            @Mapping(target = "externalSystemId", expression = "java(String.valueOf(user.getExternalSystemId()))"),
+            @Mapping(target = "id", expression = "java(user.getId() == null ? null : String.valueOf(user.getId()))"),
+            @Mapping(target = "externalSystemId", expression = "java(user.getExternalSystemId() == null ? null : String"
+                                                               + ".valueOf(user.getExternalSystemId()))"),
             @Mapping(target = "personal.firstName", source="firstName"),
             @Mapping(target = "personal.lastName", source="lastName"),
             @Mapping(target = "personal.middleName", source="middleName"),
@@ -29,8 +30,10 @@ public abstract class UserMapper {
     public abstract UserDto mapEntityToDto(User user);
 
     @Mappings({
-            @Mapping(target = "id", expression = "java(java.util.UUID.fromString(userDto.getId()))"),
-            @Mapping(target = "externalSystemId", expression = "java(java.util.UUID.fromString(userDto.getId()))"),
+            @Mapping(target = "id", expression = "java(userDto.getId() == null ? null : java.util.UUID.fromString"
+                                                 + "(userDto.getId()))"),
+            @Mapping(target = "externalSystemId", expression = "java(userDto.getId() == null ? null : java.util.UUID"
+                                                               + ".fromString(userDto.getId()))"),
     })
     @InheritInverseConfiguration
     public abstract User mapDtoToEntity(UserDto userDto);

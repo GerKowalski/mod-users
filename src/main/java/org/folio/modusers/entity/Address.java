@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+
+import static javax.persistence.FetchType.EAGER;
 
 @Table(name = "address")
 @Data
@@ -23,8 +24,8 @@ public class Address implements Serializable
 	@GeneratedValue
 	private UUID id;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id", nullable = false)
+	@ManyToOne(fetch = EAGER)
+	@JoinColumn(name = "user_id")
 	private User user;
 
 //	private AddressType addressTypeId;
