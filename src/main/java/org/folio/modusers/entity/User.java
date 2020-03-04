@@ -19,9 +19,9 @@ import lombok.Data;
 @Entity
 public class User implements Serializable {
 
-	@Id
-	@GeneratedValue
-	private UUID id;
+  @Id
+  @GeneratedValue
+  private UUID id;
 
   private String username;
 
@@ -56,11 +56,11 @@ public class User implements Serializable {
 
   private Date updatedDate;
 
-  private String lastName;
+  private String lastname;
 
-  private String firstName;
+  private String firstname;
 
-  private String middleName;
+  private String middlename;
 
   private String email;
 
