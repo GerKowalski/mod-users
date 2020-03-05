@@ -6,5 +6,6 @@
 
 	<include file="changes/sprint_1_initial_schema.xml" relativeToChangelogFile="true"/>
 	<include file="changes/sprint_1_insert_default_users.xml" relativeToChangelogFile="true"/>
-	
+	<include file="changes/sprint_2_rename_patron_group_table.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

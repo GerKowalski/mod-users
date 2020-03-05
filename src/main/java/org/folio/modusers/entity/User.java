@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -33,7 +35,7 @@ public class User implements Serializable {
 
   private String type;
 
-  private UUID patronGroupId;
+//  private UUID patronGroupId;
 
   //TODO Discussion with team
 //	private Object meta;
@@ -43,6 +45,10 @@ public class User implements Serializable {
 
 /*	@Column("personal")
 	private UserPersonal personal;*/
+
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "patron_group_id")
+  private UserGroup userGroup;
 
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
       cascade = CascadeType.ALL)
