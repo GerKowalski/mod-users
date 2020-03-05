@@ -404,6 +404,133 @@
         }
       ],
       "protocolProfileBehavior": { }
+    },
+    {
+      "name": "userGroup",
+      "item": [
+        {
+          "name": "get all user groups",
+          "request": {
+            "method": "GET",
+            "header": [ ],
+            "url": {
+              "raw": "http://localhost:8080/users-poc/groups",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "groups"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "create user group",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"group\":\"Staff\",\n    \"desc\":\"Staff member\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/groups",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "groups"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "create user group Copy",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"id\":\"d048b018-2226-4a58-a3c1-89cbb793bace\",\n    \"group\":\"Staff222\",\n    \"desc\":\"Staff member\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/groups/d048b018-2226-4a58-a3c1-89cbb793bace",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "groups",
+                "d048b018-2226-4a58-a3c1-89cbb793bace"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "create user group Copy Copy",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/users-poc/groups/d048b018-2226-4a58-a3c1-89cbb793bace",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "groups",
+                "d048b018-2226-4a58-a3c1-89cbb793bace"
+              ]
+            }
+          },
+          "response": [ ]
+        }
+      ],
+      "protocolProfileBehavior": { }
     }
   ],
   "protocolProfileBehavior": { }
