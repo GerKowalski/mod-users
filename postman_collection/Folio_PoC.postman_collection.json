@@ -1,0 +1,410 @@
+{
+  "info": {
+    "_postman_id": "a6f94f94-9417-45bf-a23d-33ec9daa4aa5",
+    "name": "Folio PoC",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "get all users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "users"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "create user",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\t\"username\":\"Alex with\",\n    \t\"barcode\": \"10.210.2020\",\n    \t\"active\":true,\n        \"type\": \"type\",\n        \"enrollmentDate\":\"2018-09-22T00:00:00.000+0000\",\n        \"createdDate\":\"2018-09-22T00:00:00.000+0000\",\n        \"lastname\":\"Alex\",\n        \"firstname\": \"Anex\",\n        \"email\":\"dek@gmail.com\",\n        \"phone\":\"09312312312\",\n    \n        \"personal\" : {\n        \t\"dateOfBirth\":\"1989-08-21T00:00:00.000+0000\",\n\t\t    \"email\" : \"cordie@carroll-corwin.hi.us\",\n\t\t    \"phone\" : \"791-043-4090 x776\",\n\t\t    \"lastName\" : \"Ferry\",\n\t\t    \"firstName\" : \"Natalia\",\n\t\t    \"addresses\": [\n                    {\n                        \"countryId\": \"US\",\n                        \"addressLine1\": \"03749 Dorothea Prairie Suite 396\",\n                        \"city\": \"Akron\",\n                        \"region\": \"KY\",\n                        \"postalCode\": \"11104\",\n                        \"addressTypeId\": \"1c4b225f-f669-4e9b-afcd-ebc0e273a34e\",\n                        \"primaryAddress\": true\n                    }\n                ]\n\t\t}\n    }"
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "users"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "update user",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\n\t\t\"id\":\"27b0eed9-ffbc-42fb-a386-a98e4bfb5329\",\n\t\t\"username\":\"OlehPetrov\",\n    \t\"barcode\": \"10.210.2020\",\n    \t\"active\":true,\n        \"type\": \"type\",\n        \"enrollmentDate\":\"2018-09-22T00:00:00.000+0000\",\n        \"createdDate\":\"2018-09-22T00:00:00.000+0000\",\n        \"lastname\":\"Oleh\",\n        \"firstname\": \"Oleh\",\n        \"email\":\"petr@gmail.com\",\n        \"phone\":\"09312312312\",\n    \n        \"personal\" : {\n        \t\"dateOfBirth\":\"1989-08-21T00:00:00.000+0000\",\n\t\t    \"email\" : \"cordie@carroll-corwin.hi.us\",\n\t\t    \"phone\" : \"791-043-4090 x776\",\n\t\t    \"lastName\" : \"Ferry\",\n\t\t    \"firstName\" : \"Natalia\",\n\t\t    \"addresses\": [\n                    {\n                        \"countryId\": \"US\",\n                        \"addressLine1\": \"03749 Dorothea Prairie Suite 396\",\n                        \"city\": \"Akron\",\n                        \"region\": \"KY\",\n                        \"postalCode\": \"11104\",\n                        \"addressTypeId\": \"1c4b225f-f669-4e9b-afcd-ebc0e273a34e\",\n                        \"primaryAddress\": true\n                    }\n                ]\n\t\t}\n    }"
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/users/27b0eed9-ffbc-42fb-a386-a98e4bfb5329",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "users",
+                "27b0eed9-ffbc-42fb-a386-a98e4bfb5329"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "delete user",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/users-poc/users/27b0eed9-ffbc-42fb-a386-a98e4bfb5329",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "users",
+                "27b0eed9-ffbc-42fb-a386-a98e4bfb5329"
+              ]
+            }
+          },
+          "response": [ ]
+        }
+      ],
+      "protocolProfileBehavior": { }
+    },
+    {
+      "name": "addressTypes",
+      "item": [
+        {
+          "name": "get all address types",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{          \n\n\"desc\":\"OPA PAOPA A sssadsas\",\n\t\"addressType\":\"asdasdasd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/addresstypes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "addresstypes"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "create address types",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{          \n\t\"desc\":\"Test address type 1\",\n\t\"addressType\":\"addrestype1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/addresstypes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "addresstypes"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "update address types",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{          \n\t\"id\":\"bda73e30-d030-4adc-9710-4c2ca41aa21d\",\n\t\"desc\":\"Test update addres type\",\n\t\"addressType\":\"AddressTypeUpdate\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/addresstypes/bda73e30-d030-4adc-9710-4c2ca41aa21d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "addresstypes",
+                "bda73e30-d030-4adc-9710-4c2ca41aa21d"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "delete address types",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/users-poc/addresstypes/bda73e30-d030-4adc-9710-4c2ca41aa21d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "addresstypes",
+                "bda73e30-d030-4adc-9710-4c2ca41aa21d"
+              ]
+            }
+          },
+          "response": [ ]
+        }
+      ],
+      "protocolProfileBehavior": { }
+    },
+    {
+      "name": "proxiFor",
+      "item": [
+        {
+          "name": "get all proxy for",
+          "request": {
+            "method": "GET",
+            "header": [ ],
+            "url": {
+              "raw": "http://localhost:8080/users-poc/proxiesfor",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "proxiesfor"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "create proxy for",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requestForSponsor\": \"2\",\r\n    \"createdDate\": \"1989-08-20T21:00:00.000+0000\",\r\n    \"notificationsTo\": \"Mother\",\r\n    \"accrueTo\": \"Bob\",\r\n    \"expirationDate\": \"1993-03-20T21:00:00.000+0000\",\r\n    \"status\": \"active\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/proxiesfor",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "proxiesfor"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "update proxy for",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"id\":\"bda73e30-d030-4adc-9710-4c2ca41aa21d\",\r\n    \"requestForSponsor\": \"2\",\r\n    \"createdDate\": \"1989-08-20T21:00:00.000+0000\",\r\n    \"notificationsTo\": \"Mother\",\r\n    \"accrueTo\": \"Bob\",\r\n    \"expirationDate\": \"1993-03-20T21:00:00.000+0000\",\r\n    \"status\": \"active\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/users-poc/proxiesfor/bda73e30-d030-4adc-9710-4c2ca41aa21d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "proxiesfor",
+                "bda73e30-d030-4adc-9710-4c2ca41aa21d"
+              ]
+            }
+          },
+          "response": [ ]
+        },
+        {
+          "name": "delete proxy for",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/users-poc/proxiesfor/bda73e30-d030-4adc-9710-4c2ca41aa21d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "users-poc",
+                "proxiesfor",
+                "bda73e30-d030-4adc-9710-4c2ca41aa21d"
+              ]
+            }
+          },
+          "response": [ ]
+        }
+      ],
+      "protocolProfileBehavior": { }
+    }
+  ],
+  "protocolProfileBehavior": { }
+}

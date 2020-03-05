@@ -31,7 +31,7 @@ public interface ProxyForMapper {
   @InheritInverseConfiguration
   List<ProxyFor> mapDtosToEntities(List<ProxyForDto> proxyForDtos);
 
-  default ProxyforCollectionDto mapToUserDataCollectionDto(List<ProxyFor> proxyFors) {
+  default ProxyforCollectionDto mapToProxyForDataCollectionDto(List<ProxyFor> proxyFors) {
     ProxyforCollectionDto proxyforCollectionDto = new ProxyforCollectionDto();
     List<ProxyForDto> proxyForDtos = mapEntitiesToDtos(proxyFors);
     proxyforCollectionDto.setProxiesFor(proxyForDtos);
