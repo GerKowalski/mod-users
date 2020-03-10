@@ -6,13 +6,16 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.folio.modusers.dto.CompositeUserDto;
 import org.folio.modusers.dto.UserDto;
 import org.folio.modusers.dto.UserdataCollectionDto;
+import org.folio.modusers.service.CompositeUserService;
 import org.folio.modusers.service.UserService;
 import org.folio.modusers.users.api.UsersApi;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,14 +28,14 @@ public class UserController implements UsersApi {
   @Override
   public ResponseEntity<UserDto> postUsers(@Valid final UserDto userdata,
       @Pattern(regexp = "[a-zA-Z]{2}") @Valid final String lang) {
-    return new ResponseEntity<>(userService.saveUser(userdata), HttpStatus.OK);
+    return ResponseEntity.ok(userService.saveUser(userdata));
   }
 
   @Override
   public ResponseEntity<Void> deleteUsersByUserId(final String userId,
       @Pattern(regexp = "[a-zA-Z]{2}") @Valid final String lang) {
     userService.removeById(userId);
-    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    return ResponseEntity.noContent().build();
   }
 
   @Override
@@ -42,13 +45,13 @@ public class UserController implements UsersApi {
       @Valid final String orderBy, @Valid final String order,
       @Pattern(regexp = "[a-zA-Z]{2}") @Valid final String lang,
       @Valid final List<String> facets) {
-    return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
+    return ResponseEntity.ok(userService.getUsers());
   }
 
   @Override
   public ResponseEntity<UserDto> getUsersByUserId(final String userId,
       @Pattern(regexp = "[a-zA-Z]{2}") @Valid final String lang) {
-    return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
+    return ResponseEntity.ok(userService.getUserById(userId));
   }
 
   @Override
@@ -56,7 +59,6 @@ public class UserController implements UsersApi {
       @Valid final UserDto userdataCollection,
       @Pattern(regexp = "[a-zA-Z]{2}") @Valid final String lang) {
     userService.saveUser(userdataCollection);
-
-    return new ResponseEntity<>(HttpStatus.OK);
+    return ResponseEntity.ok().build();
   }
 }
