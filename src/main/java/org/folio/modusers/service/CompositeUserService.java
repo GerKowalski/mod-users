@@ -3,6 +3,7 @@ package org.folio.modusers.service;
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 import static org.springframework.data.util.CastUtils.cast;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,14 +12,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.folio.modusers.client.CredentialsClient;
 import org.folio.modusers.client.PermsClient;
 import org.folio.modusers.dto.CompositeUserDto;
+import org.folio.modusers.dto.CompositeUserListObjectDto;
 import org.folio.modusers.dto.CredentialsDto;
 import org.folio.modusers.dto.FullPermissions;
 import org.folio.modusers.dto.PermissionUser;
@@ -69,13 +71,36 @@ public class CompositeUserService {
     return dto;
   }
 
+  public CompositeUserListObjectDto getUsers(int offset, int limit, List<String> include) {
+    List<UserDto> userDtos = userService.getUsersByOffset(offset, limit);
+    List<CompositeUserDto> compositeUserDtos = userDtos.stream().map(userDto -> {
+      CompositeUserDto compositeUserDto = new CompositeUserDto();
+      compositeUserDto.setUser(userDto);
+      return compositeUserDto;
+    }).collect(Collectors.toList());
+    Map<String, List<CompletableFuture>> list = new HashMap<>();
+    if (include.contains(PERMS_INCLUDE)) {
+      list.put(PERMS_INCLUDE,
+          asyncPermsList(compositeUserDtos));
+    }
+    if (include.contains(CREDENTIALS_INCLUDE)) {
+      list.put(CREDENTIALS_INCLUDE,
+          asyncCredsList(compositeUserDtos));
+    }
+    list.values().stream().flatMap(Collection::stream).forEach(CompletableFuture::join);
+    CompositeUserListObjectDto compositeUserListObjectDto = new CompositeUserListObjectDto();
+    compositeUserListObjectDto.setCompositeUsers(compositeUserDtos);
+    return compositeUserListObjectDto;
+  }
+
   private PermissionUserDto enrichPermissions(CompositeUserDto dto, String userId) {
     PermissionUserDto perms = permsClient.getPerms("userId==" + userId);
     dto.setPermissions(perms);
     return perms;
   }
 
-  private PermissionUserDto enrichFullPermissions(CompositeUserDto user, List<PermissionUser> permissionUser) {
+  private PermissionUserDto enrichFullPermissions(CompositeUserDto user,
+      List<PermissionUser> permissionUser) {
     FullPermissions fullPerms = permsClient.getFullPerms(permissionUser.get(0).getId());
     PermissionUserDto permissionUserDto = new PermissionUserDto();
     permissionUserDto.setPermissions(cast(fullPerms.getPermissionNames()));
@@ -92,6 +117,18 @@ public class CompositeUserService {
 
   private <T> CompletableFuture<T> async(Supplier<T> jobSupplier) {
     return supplyAsync(jobSupplier, executor);
+  }
+
+  private List<CompletableFuture> asyncPermsList(List<CompositeUserDto> list) {
+    return list.stream()
+        .map(e -> async(() -> enrichPermissions(e, e.getUser().getId())))
+        .collect(Collectors.toList());
+  }
+
+  private List<CompletableFuture> asyncCredsList(List<CompositeUserDto> list) {
+    return list.stream()
+        .map(e -> async(() -> enrichCredentials(e, e.getUser().getId())))
+        .collect(Collectors.toList());
   }
 
   private static ExecutorService newLimitedCachedThreadPool(int threadNum, String name) {
